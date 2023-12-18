@@ -6,5 +6,6 @@ module.exports = defineConfig({
       // implement node event listeners here
     },
     baseUrl: 'http://www.saucedemo.com',
+    chromeWebSecurity: false
   },
 });
