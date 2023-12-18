@@ -1,0 +1,14 @@
+{
+  "name": "poc_cypress",
+  "version": "1.0.0",
+  "description": "POC para avaliação do Cypress para o trabalho final da Especialização em Testes Ágeis",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx cypress run"
+  },
+  "author": "thiago.andrade",
+  "license": "ISC",
+  "dependencies": {
+    "cypress": "^13.6.1"
+  }
+}
