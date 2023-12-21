@@ -14,7 +14,7 @@ class ProdutosPage{
 
     get bdgShoppingCart(){
         return cy.get('.shopping_cart_badge')
-    }
+    }    
 
     getBtnAddToCart(produto) {
         const seletor = `[data-test="add-to-cart-${produto}"]`;
@@ -44,6 +44,11 @@ class ProdutosPage{
 
     clickBtnCart(){
         this.btnCart.click()
+    }
+
+    assertImgErrada(){
+        return cy.get('#item_0_img_link > .inventory_item_img')
+        .invoke('attr', 'src').should('equal', '/static/media/sl-404.168b1cce.jpg')
     }
 
 }

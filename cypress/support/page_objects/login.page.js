@@ -12,6 +12,10 @@ class LoginPage{
         return cy.get('[data-test="login-button"]')
     }
 
+    get msgLockedUser(){
+        return cy.get('[data-test="error"]')
+    }
+
 }
 
 export default new LoginPage()
