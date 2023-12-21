@@ -48,6 +48,15 @@ describe('Testar feature Produtos', () => {
     produtosPage.lblTitle.should('contain', 'Products')
   })
 
+  it('Validar adicionar e remover todos os produtos no carrinho', () => {
+    cy.login(login.standard, login.password)
+    produtosPage.clickBtnAddToCartAllProducts()
+    produtosPage.bdgShoppingCart.should('contain', '6')
+    produtosPage.clickBtnRemoveFromCartAllProducts()
+    produtosPage.bdgShoppingCart.should('not.exist')   
+
+  })
+
   it('Validar ordenação padrão em ordem alfabética crescente', () => {
     cy.login(login.standard, login.password)
     produtosPage.validateSortedProductsAtoZ()

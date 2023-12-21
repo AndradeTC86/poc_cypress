@@ -39,11 +39,23 @@ class ProdutosPage{
     }
 
     clickBtnAddToCart(){
-       this.getBtnAddToCart(produto.backpack).click()
+       this.getBtnAddToCart(produto[0].produto).click()
     }
 
+    clickBtnAddToCartAllProducts(){
+        for (const produtos of produto){
+            this.getBtnAddToCart(produtos.produto).click()
+        }
+    }    
+
     clickBtnRemoveFromCart(){
-        this.getBtnRemoveFromCart(produto.backpack).click()
+        this.getBtnRemoveFromCart(produto[0].produto).click()
+    }
+
+    clickBtnRemoveFromCartAllProducts(){
+        for (const produtos of produto){
+            this.getBtnRemoveFromCart(produtos.produto).click()
+        }
     }
 
     clickImgProduto(){
@@ -55,11 +67,11 @@ class ProdutosPage{
     }
 
     assertBtnAddToCartVisible() {
-        this.getBtnAddToCart(produto.backpack).should('be.visible')
+        this.getBtnAddToCart(produto[0].produto).should('be.visible')
     }
 
     assertBtnRemoveFromCartVisible() {
-        this.getBtnRemoveFromCart(produto.backpack).should('be.visible')
+        this.getBtnRemoveFromCart(produto[0].produto).should('be.visible')
     }
 
     clickBtnCart(){
@@ -67,12 +79,12 @@ class ProdutosPage{
     }
 
     assertImgErrada(){
-        return cy.get('#item_0_img_link > .inventory_item_img')
-        .invoke('attr', 'src').should('equal', '/static/media/sl-404.168b1cce.jpg')
+        return this.getImgProduto(0)
+        .invoke('attr', 'src').should('equal', '/static/media/sl-404.168b1cce.jpg')        
     }
 
     assertImgGrande(){
-        return cy.get('#item_4_img_link > .inventory_item_img').then($img => {
+        return this.getImgProduto(4).then($img => {
             expect($img[0].width).to.equal(262)
             expect($img[0].height).to.equal(238)
           })

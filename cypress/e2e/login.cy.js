@@ -34,7 +34,7 @@ describe('Testar feature login', () => {
     })    
   })
 
-  it('Realizar login com usuário visual', () => {
+  it('Realizar login com erro de layout', () => {
     cy.login(login.visual, login.password)
     produtosPage.assertImgGrande()
   })
