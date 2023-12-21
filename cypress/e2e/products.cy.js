@@ -25,4 +25,26 @@ describe('Testar feature Produtos', () => {
     produtosPage.bdgShoppingCart.should('not.exist')
     produtosPage.assertBtnAddToCartVisible()
   })
+
+  it('Adicionar produto no carrinho pela página do produto', () => {
+    cy.login(login.standard, login.password)
+    produtosPage.clickImgProduto()
+    produtosPage.clickBtnAddToCart()
+    produtosPage.bdgShoppingCart.should('contain', '1')
+    produtosPage.clickBtnCart()
+    your_cartPage.lblItemName.should('contain', 'Sauce Labs Backpack')
+  })
+
+  it('Remover produto do carrinho pela página do produto e voltar a página de produtos', () => {
+    cy.login(login.standard, login.password)    
+    produtosPage.clickBtnAddToCart()
+    produtosPage.bdgShoppingCart.should('contain', '1')
+    produtosPage.clickImgProduto()
+    produtosPage.assertBtnRemoveFromCartVisible()
+    produtosPage.clickBtnRemoveFromCart()
+    produtosPage.bdgShoppingCart.should('not.exist')    
+    produtosPage.clickLnkBackToProducts()
+    produtosPage.assertBtnAddToCartVisible()
+    produtosPage.lblTitle.should('contain', 'Products')
+  })
 })
