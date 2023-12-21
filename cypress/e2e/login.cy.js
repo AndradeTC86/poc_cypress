@@ -22,4 +22,20 @@ describe('Testar feature login', () => {
     cy.login(login.problem, login.password)
     produtosPage.assertImgErrada()
   })
+
+  it('Realizar login com usuário com erros de performance', () => {
+    cy.login(login.performance, login.password)
+    cy.request({
+      method: 'POST',
+      url: 'https://events.backtrace.io/api/unique-events/submit?universe=UNIVERSE&token=TOKEN',
+      failOnStatusCode: false
+    }).then(response => {
+      expect(response.duration).to.be.greaterThan(400);
+    })    
+  })
+
+  it('Realizar login com usuário visual', () => {
+    cy.login(login.visual, login.password)
+    produtosPage.assertImgGrande()
+  })
 })

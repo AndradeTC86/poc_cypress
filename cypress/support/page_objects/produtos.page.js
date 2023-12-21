@@ -51,6 +51,13 @@ class ProdutosPage{
         .invoke('attr', 'src').should('equal', '/static/media/sl-404.168b1cce.jpg')
     }
 
+    assertImgGrande(){
+        return cy.get('#item_4_img_link > .inventory_item_img').then($img => {
+            expect($img[0].width).to.equal(262); 
+            expect($img[0].height).to.equal(238);
+          })
+    }
+
 }
 
 export default new ProdutosPage()
