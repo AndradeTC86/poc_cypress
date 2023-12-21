@@ -47,4 +47,27 @@ describe('Testar feature Produtos', () => {
     produtosPage.assertBtnAddToCartVisible()
     produtosPage.lblTitle.should('contain', 'Products')
   })
+
+  it('Validar ordenação padrão em ordem alfabética crescente', () => {
+    cy.login(login.standard, login.password)
+    produtosPage.validateSortedProductsAtoZ()
+  })
+  
+  it('Ordenar produtos em ordem alfabética decrescente', () => {
+    cy.login(login.standard, login.password)
+    produtosPage.orderByNameZtoA()
+    produtosPage.validateSortedProductsZtoA()
+  })
+
+  it('Ordenar produtos em preço do menor para o maior', () => {
+    cy.login(login.standard, login.password)
+    produtosPage.orderByPriceLowtoHigh()
+    produtosPage.validateSortedProductsLowtoHigh()
+  })
+
+  it('Ordenar produtos em preço do menor para o maior', () => {
+    cy.login(login.standard, login.password)
+    produtosPage.orderByPriceHightoLow()
+    produtosPage.validateSortedProductsHightoLow()
+  })
 })

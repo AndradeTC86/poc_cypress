@@ -19,6 +19,10 @@ class ProdutosPage{
         return cy.get('[data-test="back-to-products"]')
     }
 
+    get menuOrdenar(){
+        return cy.get('[data-test="product_sort_container"]')
+    }
+
     getBtnAddToCart(produto) {
         const seletor = `[data-test="add-to-cart-${produto}"]`
         return cy.get(seletor)
@@ -73,6 +77,87 @@ class ProdutosPage{
             expect($img[0].height).to.equal(238)
           })
     }
+
+    orderByNameZtoA(){
+        this.menuOrdenar.select('Name (Z to A)')
+    }
+
+    orderByPriceLowtoHigh(){
+        this.menuOrdenar.select('Price (low to high)')
+    }
+
+    orderByPriceHightoLow(){
+        this.menuOrdenar.select('Price (high to low)')
+    }
+
+    validateSortedProductsAtoZ() {
+        cy.get('.inventory_item_name')
+        .then(items => {
+            const unsortedItems = items.map((index, html) => Cypress.$(html).text()).get()
+            const sortedItems = unsortedItems.slice().sort()
+                cy.log('Unsorted items:')
+                    unsortedItems.forEach((item, index) => {
+                cy.log(`Item ${index + 1}: ${item}`)
+                })
+                cy.log('Sorted items:')
+                    sortedItems.forEach((item, index) => {
+                cy.log(`Item ${index + 1}: ${item}`)
+                })
+            expect(unsortedItems, 'Items are sorted').to.deep.equal(sortedItems)
+        })
+    }
+
+    validateSortedProductsZtoA() {
+        cy.get('.inventory_item_name')
+        .then(items => {
+            const unsortedItems = items.map((index, html) => Cypress.$(html).text()).get()
+            const sortedItems = unsortedItems.slice().sort().reverse()
+                cy.log('Unsorted items:')
+                    unsortedItems.forEach((item, index) => {
+                cy.log(`Item ${index + 1}: ${item}`)
+                })
+                cy.log('Sorted items:')
+                    sortedItems.forEach((item, index) => {
+                cy.log(`Item ${index + 1}: ${item}`)
+                })
+            expect(unsortedItems, 'Items are sorted').to.deep.equal(sortedItems)
+        })
+    }
+    
+    validateSortedProductsLowtoHigh() {
+        cy.get('.inventory_item_price')
+        .then(items => {
+            const unsortedItems = items.map((index, html) => parseFloat(Cypress.$(html).text().replace('$', ''))).get()
+            const sortedItems = [...unsortedItems].sort((a, b) => a - b)
+                cy.log('Unsorted items:')
+                    unsortedItems.forEach((item, index) => {
+                cy.log(`Item ${index + 1}: ${item}`)
+                })
+                cy.log('Sorted items:')
+                    sortedItems.forEach((item, index) => {
+                cy.log(`Item ${index + 1}: ${item}`)
+                })
+            expect(unsortedItems, 'Items are sorted').to.deep.equal(sortedItems)
+        })
+    }
+
+    validateSortedProductsHightoLow() {
+        cy.get('.inventory_item_price')
+        .then(items => {
+            const unsortedItems = items.map((index, html) => parseFloat(Cypress.$(html).text().replace('$', ''))).get()
+            const sortedItems = [...unsortedItems].sort((a, b) => b - a)
+                cy.log('Unsorted items:')
+                    unsortedItems.forEach((item, index) => {
+                cy.log(`Item ${index + 1}: ${item}`)
+                })
+                cy.log('Sorted items:')
+                    sortedItems.forEach((item, index) => {
+                cy.log(`Item ${index + 1}: ${item}`)
+                })
+            expect(unsortedItems, 'Items are sorted').to.deep.equal(sortedItems)
+        })
+    }
+      
 }
 
 export default new ProdutosPage()
