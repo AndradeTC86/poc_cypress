@@ -5,6 +5,8 @@ describe('Testar feature Produtos', () => {
   
   beforeEach(() => {
     cy.autoLogin()
+    produtosPage.lblTitle.should('contain', 'Products')
+    produtosPage.Url.should('equal', 'https://www.saucedemo.com/inventory.html')
   })
     
   it('Inserir produto no carrinho', () => {

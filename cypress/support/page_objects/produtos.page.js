@@ -3,9 +3,13 @@ const produto = require("../../fixtures/produtos.json")
 
 class ProdutosPage{
 
+    get Url(){
+        return cy.url()
+    }
+
     get lblTitle(){
         return cy.get('.title')
-    }    
+    }        
 
     get btnCart(){
         return cy.get('.shopping_cart_link')
