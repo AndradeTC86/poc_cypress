@@ -9,14 +9,14 @@ describe('Testar feature Produtos', () => {
     produtosPage.Url.should('equal', 'https://www.saucedemo.com/inventory.html')
   })
     
-  it('Inserir produto no carrinho', () => {
+  it('Inserir produto no carrinho e validar que foi gravado corretamente no carrinho', () => {
     produtosPage.clickBtnAddToCart()
     produtosPage.bdgShoppingCart.should('contain', '1')
     produtosPage.clickBtnCart()
     your_cartPage.lblItemName.should('contain', 'Sauce Labs Backpack')
   })
 
-  it('Remover produto do carrinho', () => {
+  it('Remover produto do carrinho pela página de produto', () => {
     produtosPage.clickBtnAddToCart()
     produtosPage.bdgShoppingCart.should('contain', '1')
     produtosPage.assertBtnRemoveFromCartVisible()
@@ -25,7 +25,7 @@ describe('Testar feature Produtos', () => {
     produtosPage.assertBtnAddToCartVisible()
   })
 
-  it('Adicionar produto no carrinho pela página do produto', () => {
+  it('Adicionar produto no carrinho pela página do produto e verificar que gravou corretamente no carrinho', () => {
     produtosPage.clickImgProduto()
     produtosPage.clickBtnAddToCart()
     produtosPage.bdgShoppingCart.should('contain', '1')
@@ -39,9 +39,9 @@ describe('Testar feature Produtos', () => {
     produtosPage.clickImgProduto()
     produtosPage.assertBtnRemoveFromCartVisible()
     produtosPage.clickBtnRemoveFromCart()
-    produtosPage.bdgShoppingCart.should('not.exist')    
+    produtosPage.bdgShoppingCart.should('not.exist')
+    produtosPage.assertBtnAddToCartVisible()    
     produtosPage.clickLnkBackToProducts()
-    produtosPage.assertBtnAddToCartVisible()
     produtosPage.lblTitle.should('contain', 'Products')
   })
 
@@ -49,8 +49,7 @@ describe('Testar feature Produtos', () => {
     produtosPage.clickBtnAddToCartAllProducts()
     produtosPage.bdgShoppingCart.should('contain', '6')
     produtosPage.clickBtnRemoveFromCartAllProducts()
-    produtosPage.bdgShoppingCart.should('not.exist')   
-
+    produtosPage.bdgShoppingCart.should('not.exist')
   })
 
   it('Validar ordenação padrão em ordem alfabética crescente', () => {
