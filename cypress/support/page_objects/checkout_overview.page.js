@@ -8,6 +8,21 @@ class CheckoutOverview{
         return cy.get('.title')
     }
 
+    get btnCancel(){
+        return cy.get('[data-test="cancel"]')
+    }
+
+    get btnContinue(){
+        return cy.get('[data-test="finish"]')
+    }
+
+    clickBtnCancel(){
+        this.btnCancel.click()
+    }
+
+    clickBtnContinue(){
+        this.btnContinue.click()
+    }
    
 }
 

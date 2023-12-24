@@ -1,4 +1,6 @@
 import loginpage from "../support/page_objects/login.page"
+import checkout_overviewPage from "./page_objects/checkout_overview.page"
+import checkout_your_informationPage from "./page_objects/checkout_your_information.page"
 import produtosPage from "./page_objects/produtos.page"
 import your_cartPage from "./page_objects/your_cart.page"
 const login = require("../fixtures/login.json")
@@ -23,4 +25,15 @@ Cypress.Commands.add('setCart', () => {
 Cypress.Commands.add('setCheckout', () => {
     cy.setCart()
     your_cartPage.clickBtnCheckout()
+})
+
+Cypress.Commands.add('setCheckoutOverview', () => {
+    cy.setCheckout()
+    checkout_your_informationPage.fillTxtFields('Cliente', 'Teste', '1234567')
+    checkout_your_informationPage.clickBtnContinue()
+})
+
+Cypress.Commands.add('setCheckoutComplete', () => {
+    cy.setCheckoutOverview()
+    checkout_overviewPage.clickBtnContinue()
 })
