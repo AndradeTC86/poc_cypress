@@ -1,5 +1,6 @@
 import produtosPage from "../support/page_objects/produtos.page"
 import your_cartPage from "../support/page_objects/your_cart.page"
+const produto = require("../fixtures/produtos.json")
 
 describe('Testar feature Produtos', () => {
   
@@ -13,7 +14,7 @@ describe('Testar feature Produtos', () => {
     produtosPage.clickBtnAddToCart()
     produtosPage.bdgShoppingCart.should('contain', '1')
     produtosPage.clickBtnCart()
-    your_cartPage.lblItemName.should('contain', 'Sauce Labs Backpack')
+    your_cartPage.lblItemName.should('contain', produto[0].name)
   })
 
   it('Remover produto do carrinho pela página de produto', () => {
@@ -30,7 +31,7 @@ describe('Testar feature Produtos', () => {
     produtosPage.clickBtnAddToCart()
     produtosPage.bdgShoppingCart.should('contain', '1')
     produtosPage.clickBtnCart()
-    your_cartPage.lblItemName.should('contain', 'Sauce Labs Backpack')
+    your_cartPage.lblItemName.should('contain', produto[0].name)
   })
 
   it('Remover produto do carrinho pela página do produto e voltar a página de produtos', () => {

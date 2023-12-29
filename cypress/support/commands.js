@@ -4,6 +4,7 @@ import checkout_your_informationPage from "./page_objects/checkout_your_informat
 import produtosPage from "./page_objects/produtos.page"
 import your_cartPage from "./page_objects/your_cart.page"
 const login = require("../fixtures/login.json")
+const cliente = require("../fixtures/clientes.json")
 
 Cypress.Commands.add('login', (usuario, senha) => {
     loginpage.txtUsername.type(usuario)
@@ -29,7 +30,7 @@ Cypress.Commands.add('setCheckout', () => {
 
 Cypress.Commands.add('setCheckoutOverview', () => {
     cy.setCheckout()
-    checkout_your_informationPage.fillTxtFields('Cliente', 'Teste', '1234567')
+    checkout_your_informationPage.fillTxtFields(cliente.firstName, cliente.lastName, cliente.zipCode)
     checkout_your_informationPage.clickBtnContinue()
 })
 
