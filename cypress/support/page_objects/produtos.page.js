@@ -24,7 +24,15 @@ class ProdutosPage{
     }
 
     get menuOrdenar(){
-        return cy.get('[data-test="product_sort_container"]')
+        return cy.get('[data-test="product-sort-container"]')
+    }
+
+    get btnAddToCart(){
+        return cy.get('[data-test="add-to-cart"]')
+    }
+
+    get btnRemoveFromCart(){
+        return cy.get('[data-test="remove"]')
     }
 
     getBtnAddToCart(produto) {
@@ -44,6 +52,14 @@ class ProdutosPage{
 
     clickBtnAddToCart(){
        this.getBtnAddToCart(produto[0].produto).click()
+    }
+
+    clickbtnAddToCartFromProductPage(){
+        this.btnAddToCart.click()
+    }
+
+    clickbtnRemoveFromCartFromProductPage(){
+        this.btnRemoveFromCart.click()
     }
 
     clickBtnAddToCartAllProducts(){
@@ -70,12 +86,20 @@ class ProdutosPage{
         this.lnkBackToProducts.click()
     }
 
-    assertBtnAddToCartVisible() {
+    assertBtnAddToCartVisible(){
         this.getBtnAddToCart(produto[0].produto).should('be.visible')
     }
 
-    assertBtnRemoveFromCartVisible() {
+    assertBtnRemoveFromCartVisible(){
         this.getBtnRemoveFromCart(produto[0].produto).should('be.visible')
+    }
+
+    assertBtnAddToCartProductPageVisible(){
+        this.btnAddToCart.should('be.visible')
+    }
+
+    assertBtnRemoveFromCartProductPageVisible(){
+        this.btnRemoveFromCart.should('be.visible')
     }
 
     clickBtnCart(){
@@ -106,7 +130,7 @@ class ProdutosPage{
         this.menuOrdenar.select('Price (high to low)')
     }
 
-    validateSortedProductsAtoZ() {
+    validateSortedProductsAtoZ(){
         cy.get('.inventory_item_name')
         .then(items => {
             const unsortedItems = items.map((index, html) => Cypress.$(html).text()).get()
@@ -123,7 +147,7 @@ class ProdutosPage{
         })
     }
 
-    validateSortedProductsZtoA() {
+    validateSortedProductsZtoA(){
         cy.get('.inventory_item_name')
         .then(items => {
             const unsortedItems = items.map((index, html) => Cypress.$(html).text()).get()
@@ -140,7 +164,7 @@ class ProdutosPage{
         })
     }
     
-    validateSortedProductsLowtoHigh() {
+    validateSortedProductsLowtoHigh(){
         cy.get('.inventory_item_price')
         .then(items => {
             const unsortedItems = items.map((index, html) => parseFloat(Cypress.$(html).text().replace('$', ''))).get()
@@ -157,7 +181,7 @@ class ProdutosPage{
         })
     }
 
-    validateSortedProductsHightoLow() {
+    validateSortedProductsHightoLow(){
         cy.get('.inventory_item_price')
         .then(items => {
             const unsortedItems = items.map((index, html) => parseFloat(Cypress.$(html).text().replace('$', ''))).get()

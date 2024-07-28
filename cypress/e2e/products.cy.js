@@ -28,7 +28,7 @@ describe('Testar feature Produtos', () => {
 
   it('Adicionar produto no carrinho pela página do produto e verificar que gravou corretamente no carrinho', () => {
     produtosPage.clickImgProduto()
-    produtosPage.clickBtnAddToCart()
+    produtosPage.clickbtnAddToCartFromProductPage()
     produtosPage.bdgShoppingCart.should('contain', '1')
     produtosPage.clickBtnCart()
     your_cartPage.lblItemName.should('contain', produto[0].name)
@@ -38,10 +38,10 @@ describe('Testar feature Produtos', () => {
     produtosPage.clickBtnAddToCart()
     produtosPage.bdgShoppingCart.should('contain', '1')
     produtosPage.clickImgProduto()
-    produtosPage.assertBtnRemoveFromCartVisible()
-    produtosPage.clickBtnRemoveFromCart()
+    produtosPage.assertBtnRemoveFromCartProductPageVisible()
+    produtosPage.clickbtnRemoveFromCartFromProductPage()
     produtosPage.bdgShoppingCart.should('not.exist')
-    produtosPage.assertBtnAddToCartVisible()    
+    produtosPage.assertBtnAddToCartProductPageVisible()    
     produtosPage.clickLnkBackToProducts()
     produtosPage.lblTitle.should('contain', 'Products')
   })
