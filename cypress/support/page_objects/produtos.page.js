@@ -134,15 +134,7 @@ class ProdutosPage{
         cy.get('.inventory_item_name')
         .then(items => {
             const unsortedItems = items.map((index, html) => Cypress.$(html).text()).get()
-            const sortedItems = unsortedItems.slice().sort()
-                cy.log('Unsorted items:')
-                    unsortedItems.forEach((item, index) => {
-                cy.log(`Item ${index + 1}: ${item}`)
-                })
-                cy.log('Sorted items:')
-                    sortedItems.forEach((item, index) => {
-                cy.log(`Item ${index + 1}: ${item}`)
-                })
+            const sortedItems = unsortedItems.slice().sort()                
             expect(unsortedItems, 'Items are sorted').to.deep.equal(sortedItems)
         })
     }
@@ -151,15 +143,7 @@ class ProdutosPage{
         cy.get('.inventory_item_name')
         .then(items => {
             const unsortedItems = items.map((index, html) => Cypress.$(html).text()).get()
-            const sortedItems = unsortedItems.slice().sort().reverse()
-                cy.log('Unsorted items:')
-                    unsortedItems.forEach((item, index) => {
-                cy.log(`Item ${index + 1}: ${item}`)
-                })
-                cy.log('Sorted items:')
-                    sortedItems.forEach((item, index) => {
-                cy.log(`Item ${index + 1}: ${item}`)
-                })
+            const sortedItems = unsortedItems.slice().sort().reverse()                
             expect(unsortedItems, 'Items are sorted').to.deep.equal(sortedItems)
         })
     }
@@ -168,15 +152,7 @@ class ProdutosPage{
         cy.get('.inventory_item_price')
         .then(items => {
             const unsortedItems = items.map((index, html) => parseFloat(Cypress.$(html).text().replace('$', ''))).get()
-            const sortedItems = [...unsortedItems].sort((a, b) => a - b)
-                cy.log('Unsorted items:')
-                    unsortedItems.forEach((item, index) => {
-                cy.log(`Item ${index + 1}: ${item}`)
-                })
-                cy.log('Sorted items:')
-                    sortedItems.forEach((item, index) => {
-                cy.log(`Item ${index + 1}: ${item}`)
-                })
+            const sortedItems = [...unsortedItems].sort((a, b) => a - b)                
             expect(unsortedItems, 'Items are sorted').to.deep.equal(sortedItems)
         })
     }
@@ -185,15 +161,7 @@ class ProdutosPage{
         cy.get('.inventory_item_price')
         .then(items => {
             const unsortedItems = items.map((index, html) => parseFloat(Cypress.$(html).text().replace('$', ''))).get()
-            const sortedItems = [...unsortedItems].sort((a, b) => b - a)
-                cy.log('Unsorted items:')
-                    unsortedItems.forEach((item, index) => {
-                cy.log(`Item ${index + 1}: ${item}`)
-                })
-                cy.log('Sorted items:')
-                    sortedItems.forEach((item, index) => {
-                cy.log(`Item ${index + 1}: ${item}`)
-                })
+            const sortedItems = [...unsortedItems].sort((a, b) => b - a)                
             expect(unsortedItems, 'Items are sorted').to.deep.equal(sortedItems)
         })
     }
