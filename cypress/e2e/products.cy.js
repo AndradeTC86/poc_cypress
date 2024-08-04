@@ -17,7 +17,7 @@ describe('Testar feature Produtos', () => {
     your_cartPage.lblItemName.should('contain', produto[0].name)
   })
 
-  it('Remover produto do carrinho pela página de produto', () => {
+  it('Remover produto do carrinho pela página do produto', () => {
     produtosPage.clickBtnAddToCart()
     produtosPage.bdgShoppingCart.should('contain', '1')
     produtosPage.assertBtnRemoveFromCartVisible()
@@ -67,7 +67,7 @@ describe('Testar feature Produtos', () => {
     produtosPage.validateSortedProductsLowtoHigh()
   })
 
-  it('Ordenar produtos em preço do menor para o maior', () => {
+  it('Ordenar produtos em preço do maior para o menor', () => {
     produtosPage.orderByPriceHightoLow()
     produtosPage.validateSortedProductsHightoLow()
   })
