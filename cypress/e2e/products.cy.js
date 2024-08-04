@@ -17,7 +17,7 @@ describe('Testar feature Produtos', () => {
     your_cartPage.lblItemName.should('contain', produto[0].name)
   })
 
-  it('Remover produto do carrinho pela página do produto', () => {
+  it('Remover produto do carrinho pela página de produtos', () => {
     produtosPage.clickBtnAddToCart()
     produtosPage.bdgShoppingCart.should('contain', '1')
     produtosPage.assertBtnRemoveFromCartVisible()
