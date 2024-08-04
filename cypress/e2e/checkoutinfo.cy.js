@@ -4,7 +4,7 @@ import your_cartPage from "../support/page_objects/your_cart.page"
 const cliente = require("../fixtures/clientes.json")
 
 
-describe('Testar feature Checkout Your Info', () => {
+describe('Testar feature Checkout Your Information', () => {
 
     beforeEach(() => {
         cy.setCheckout()
