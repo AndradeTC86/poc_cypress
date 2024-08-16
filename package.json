@@ -4,7 +4,8 @@
   "description": "POC para avaliação do Cypress para o trabalho final da Especialização em Testes Ágeis",
   "main": "index.js",
   "scripts": {
-    "test": "npx cypress run"
+    "test": "npx cypress run",
+    "dash": "cypress run --record --key 3d0e175a-58dc-487d-82be-46c8f5395762"
   },
   "author": "thiago.andrade",
   "license": "ISC",
